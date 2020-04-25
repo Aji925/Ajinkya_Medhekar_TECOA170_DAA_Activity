@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int calcCost(string s1,string s2)
+{
+    int cost=0;
+    for(int i=0;i<8;++i)
+    {
+        cost+=abs(s1[i]-s2[i]);
+    }
+    return cost;
+}
+
+// Complete the formingMagicSquare function below.
+int formingMagicSquare(vector<vector<int>> s) 
+{
+    int mincost=100;
+    string s1,s2,s3,s4,s5,s6,s7,s8,ss;
+    s1="83492761";
+    s2="81672943";
+    s3="67294381";
+    s4="61834927";
+    s5="29438167";
+    s6="27618349";
+    s7="43816729";
+    s8="49276183";
+    ss="";
+    ss+=to_string(s[0][0]);
+    ss+=to_string(s[0][1]);
+    ss+=to_string(s[0][2]);
+    ss+=to_string(s[1][2]);
+    ss+=to_string(s[2][2]);
+    ss+=to_string(s[2][1]);
+    ss+=to_string(s[2][0]);
+    ss+=to_string(s[1][0]);
+    int cost=0;
+    cost=calcCost(s1,ss);
+    if(cost<mincost)
+        mincost=cost;
+    
+    cost=calcCost(s2,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s3,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s4,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s5,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s6,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s7,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    cost=calcCost(s8,ss);
+    if(cost<mincost)
+        mincost=cost;
+
+    mincost+=abs(s[1][1]-5);
+
+    return mincost;
+    
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    vector<vector<int>> s(3);
+    for (int i = 0; i < 3; i++) {
+        s[i].resize(3);
+
+        for (int j = 0; j < 3; j++) {
+            cin >> s[i][j];
+        }
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    int result = formingMagicSquare(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
